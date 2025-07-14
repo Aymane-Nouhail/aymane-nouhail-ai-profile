@@ -204,56 +204,60 @@ const ProjectsSection = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <div className="text-center mb-12 sm:mb-16 px-4 sm:px-0">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
               AI <span className="glow-text">Projects</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
-              Production-ready AI solutions, RAG systems, and innovative applications that demonstrate real-world impact across industries
+            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
+              Diverse AI projects spanning enterprise solutions (described vaguely for confidentiality), personal innovations, and academic research that demonstrate real-world impact across industries
             </p>
             
             {/* Featured/All Projects Toggle */}
-            <div className="flex items-center justify-center gap-4">
+            <div className="flex items-center justify-center gap-2 sm:gap-4">
               <button
                 onClick={() => setShowAllProjects(false)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                className={`px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors ${
                   !showAllProjects
                     ? 'bg-primary text-primary-foreground'
                     : 'bg-secondary/50 text-secondary-foreground hover:bg-secondary/80'
                 }`}
               >
-                ⭐ Featured Projects ({projects.filter(p => p.featured).length})
+                <span className="hidden sm:inline">⭐ Featured Projects</span>
+                <span className="sm:hidden">⭐ Featured</span>
+                <span className="ml-1">({projects.filter(p => p.featured).length})</span>
               </button>
               <button
                 onClick={() => setShowAllProjects(true)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                className={`px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors ${
                   showAllProjects
                     ? 'bg-primary text-primary-foreground'
                     : 'bg-secondary/50 text-secondary-foreground hover:bg-secondary/80'
                 }`}
               >
-                📂 All Projects ({projects.length})
+                <span className="hidden sm:inline">📂 All Projects</span>
+                <span className="sm:hidden">📂 All</span>
+                <span className="ml-1">({projects.length})</span>
               </button>
             </div>
           </div>
 
           {/* Enhanced Filter Controls */}
-          <div className="mb-12 space-y-6">
+          <div className="mb-8 sm:mb-12 space-y-4 sm:space-y-6">
             {/* Primary Filter Bar */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-center sm:gap-4">
               {/* Company Dropdown */}
-              <div className="relative" ref={dropdownRef}>
+              <div className="relative w-full sm:w-auto" ref={dropdownRef}>
                 <button
                   onClick={() => setShowCompanyDropdown(!showCompanyDropdown)}
-                  className="flex items-center gap-2 px-6 py-3 bg-card border border-border rounded-lg hover:bg-accent/50 transition-colors min-w-[240px] justify-between"
+                  className="flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-card border border-border rounded-lg hover:bg-accent/50 transition-colors w-full sm:min-w-[240px] justify-between text-sm sm:text-base"
                 >
-                  <div className="flex items-center gap-2">
-                    <Building2 className="w-4 h-4" />
-                    <span className="font-medium">
+                  <div className="flex items-center gap-2 min-w-0 flex-1">
+                    <Building2 className="w-4 h-4 flex-shrink-0" />
+                    <span className="font-medium truncate">
                       {activeCompanyFilter === 'All' ? 'All Organizations' : activeCompanyFilter}
                     </span>
                   </div>
-                  <ChevronDown className={`w-4 h-4 transition-transform ${showCompanyDropdown ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`w-4 h-4 transition-transform flex-shrink-0 ${showCompanyDropdown ? 'rotate-180' : ''}`} />
                 </button>
                 
                 {showCompanyDropdown && (
@@ -265,7 +269,7 @@ const ProjectsSection = () => {
                           handleCompanyFilterChange(company);
                           setShowCompanyDropdown(false);
                         }}
-                        className={`w-full text-left px-4 py-3 hover:bg-accent/50 transition-colors first:rounded-t-lg last:rounded-b-lg ${
+                        className={`w-full text-left px-4 py-3 hover:bg-accent/50 transition-colors first:rounded-t-lg last:rounded-b-lg text-sm sm:text-base ${
                           activeCompanyFilter === company ? 'bg-accent/30 font-medium' : ''
                         }`}
                       >
@@ -279,16 +283,19 @@ const ProjectsSection = () => {
               {/* Technology Filter Toggle */}
               <button
                 onClick={() => setShowTechFilters(!showTechFilters)}
-                className={`flex items-center gap-2 px-6 py-3 border rounded-lg transition-colors ${
+                className={`flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 border rounded-lg transition-colors w-full sm:w-auto justify-center text-sm sm:text-base ${
                   showTechFilters || !activeFilters.includes('All')
                     ? 'bg-primary text-primary-foreground border-primary'
                     : 'bg-card border-border hover:bg-accent/50'
                 }`}
               >
                 <Filter className="w-4 h-4" />
-                <span className="font-medium">Technology Filters</span>
+                <span className="font-medium">
+                  <span className="hidden sm:inline">Technology Filters</span>
+                  <span className="sm:hidden">Tech Filters</span>
+                </span>
                 {!activeFilters.includes('All') && (
-                  <Badge variant="secondary" className="ml-1 bg-primary-foreground/20 text-primary-foreground">
+                  <Badge variant="secondary" className="ml-1 bg-primary-foreground/20 text-primary-foreground text-xs">
                     {activeFilters.length}
                   </Badge>
                 )}
@@ -297,12 +304,17 @@ const ProjectsSection = () => {
 
             {/* Active Filters Display */}
             {(!activeFilters.includes('All') || activeCompanyFilter !== 'All') && (
-              <div className="flex flex-wrap items-center justify-center gap-2">
-                <span className="text-sm text-muted-foreground">Active filters:</span>
+              <div className="flex flex-wrap items-center justify-center gap-2 px-4 sm:px-0">
+                <span className="text-xs sm:text-sm text-muted-foreground">Active filters:</span>
                 {activeCompanyFilter !== 'All' && (
-                  <Badge variant="outline" className="flex items-center gap-1">
+                  <Badge variant="outline" className="flex items-center gap-1 text-xs">
                     <Building2 className="w-3 h-3" />
-                    {activeCompanyFilter === 'Personal/Freelance' ? 'Personal/Freelance' : activeCompanyFilter}
+                    <span className="hidden sm:inline">
+                      {activeCompanyFilter === 'Personal/Freelance' ? 'Personal/Freelance' : activeCompanyFilter}
+                    </span>
+                    <span className="sm:hidden">
+                      {activeCompanyFilter === 'Personal/Freelance' ? 'Personal' : activeCompanyFilter}
+                    </span>
                     <button
                       onClick={() => handleCompanyFilterChange('All')}
                       className="ml-1 hover:bg-destructive/20 rounded-full"
@@ -312,7 +324,7 @@ const ProjectsSection = () => {
                   </Badge>
                 )}
                 {!activeFilters.includes('All') && activeFilters.map((filter) => (
-                  <Badge key={filter} variant="outline" className="flex items-center gap-1">
+                  <Badge key={filter} variant="outline" className="flex items-center gap-1 text-xs">
                     {filter}
                     <button
                       onClick={() => handleFilterToggle(filter)}
@@ -336,13 +348,13 @@ const ProjectsSection = () => {
 
             {/* Expandable Technology Filters */}
             {showTechFilters && (
-              <div className="bg-card border border-border rounded-lg p-6">
-                <div className="flex flex-wrap items-center justify-center gap-2">
+              <div className="bg-card border border-border rounded-lg p-4 sm:p-6">
+                <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
                   {categories.map((category) => (
                     <button
                       key={category}
                       onClick={() => handleFilterToggle(category)}
-                      className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all ${
+                      className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all ${
                         activeFilters.includes(category)
                           ? 'bg-primary text-primary-foreground shadow-sm'
                           : 'bg-secondary/50 text-secondary-foreground hover:bg-secondary/80'
@@ -359,8 +371,8 @@ const ProjectsSection = () => {
             )}
 
             {/* Results Summary */}
-            <div className="text-center">
-              <p className="text-sm text-muted-foreground">
+            <div className="text-center px-4 sm:px-0">
+              <p className="text-xs sm:text-sm text-muted-foreground">
                 Showing <span className="font-medium text-foreground">{filteredProjects.length}</span> of{' '}
                 <span className="font-medium text-foreground">
                   {showAllProjects ? projects.length : projects.filter(p => p.featured).length}
@@ -370,11 +382,11 @@ const ProjectsSection = () => {
             </div>
           </div>
 
-          {/* Projects Grid - All Same Size */}
-          <div className="grid md:grid-cols-2 gap-8">
+          {/* Projects Grid - Mobile Responsive */}
+          <div className="grid gap-4 sm:gap-6 md:grid-cols-2 md:gap-8">
             {filteredProjects.map((project) => (
-              <Card key={project.id} className={`card-glow p-8 group h-full flex flex-col ${project.featured ? 'ring-2 ring-primary/20' : ''}`}>
-                <div className="space-y-6 flex-1">
+              <Card key={project.id} className={`card-glow p-4 sm:p-6 md:p-8 group h-full flex flex-col ${project.featured ? 'ring-2 ring-primary/20' : ''}`}>
+                <div className="space-y-4 sm:space-y-5 md:space-y-6 flex-1">
                   {/* Project Header */}
                   <div>
                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
@@ -392,8 +404,8 @@ const ProjectsSection = () => {
                         </Badge>
                       )}
                     </div>
-                    <p className="text-muted-foreground mb-3">{project.description}</p>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{project.longDescription}</p>
+                    <p className="text-sm sm:text-base text-muted-foreground mb-2 sm:mb-3">{project.description}</p>
+                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{project.longDescription}</p>
                     {project.period && (
                       <p className="text-xs text-muted-foreground mt-2">📅 {project.period}</p>
                     )}
@@ -402,12 +414,12 @@ const ProjectsSection = () => {
                   {/* Achievements */}
                   {project.achievements && (
                     <div>
-                      <h5 className="font-medium text-foreground mb-2">Key Achievements:</h5>
+                      <h5 className="text-sm sm:text-base font-medium text-foreground mb-2">Key Achievements:</h5>
                       <ul className="space-y-1">
                         {project.achievements.map((achievement, i) => (
-                          <li key={i} className="text-sm text-muted-foreground flex items-center gap-2">
-                            <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                            {achievement}
+                          <li key={i} className="text-xs sm:text-sm text-muted-foreground flex items-start gap-2">
+                            <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></div>
+                            <span className="flex-1">{achievement}</span>
                           </li>
                         ))}
                       </ul>
@@ -416,8 +428,8 @@ const ProjectsSection = () => {
 
                   {/* Categories */}
                   <div>
-                    <h5 className="font-medium text-foreground mb-2">Categories:</h5>
-                    <div className="flex flex-wrap gap-2">
+                    <h5 className="text-sm sm:text-base font-medium text-foreground mb-2">Categories:</h5>
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
                       {project.categories.map((category) => (
                         <Badge key={category} variant="outline" className="text-xs">
                           {category}
@@ -428,10 +440,10 @@ const ProjectsSection = () => {
 
                   {/* Tech Stack */}
                   <div>
-                    <h5 className="font-medium text-foreground mb-2">Tech Stack:</h5>
-                    <div className="flex flex-wrap gap-2">
+                    <h5 className="text-sm sm:text-base font-medium text-foreground mb-2">Tech Stack:</h5>
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
                       {project.techStack.map((tech) => (
-                        <span key={tech} className="tech-stack-badge">
+                        <span key={tech} className="tech-stack-badge text-xs sm:text-sm">
                           {tech}
                         </span>
                       ))}
@@ -440,15 +452,15 @@ const ProjectsSection = () => {
                 </div>
 
                 {/* Actions */}
-                <div className="flex gap-3 pt-6 mt-6 border-t border-border">
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 pt-4 sm:pt-6 mt-4 sm:mt-6 border-t border-border">
                   {project.demoUrl && (
                     <Button 
                       variant="default" 
                       size="sm" 
-                      className="flex-1"
+                      className="flex-1 text-xs sm:text-sm"
                       onClick={() => window.open(project.demoUrl, '_blank')}
                     >
-                      <Play className="w-4 h-4 mr-2" />
+                      <Play className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                       Live Demo
                     </Button>
                   )}
@@ -456,16 +468,17 @@ const ProjectsSection = () => {
                     <Button 
                       variant="outline" 
                       size="sm" 
-                      className="flex-1"
+                      className="flex-1 text-xs sm:text-sm"
                       onClick={() => window.open(project.githubUrl, '_blank')}
                     >
-                      <Github className="w-4 h-4 mr-2" />
+                      <Github className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                       Code
                     </Button>
                   )}
                   <Button 
                     variant="ghost" 
                     size="sm"
+                    className="text-xs sm:text-sm"
                     onClick={() => {
                       // For now, scroll to contact section to discuss the project
                       const contactSection = document.getElementById('contact');
@@ -474,7 +487,7 @@ const ProjectsSection = () => {
                       }
                     }}
                   >
-                    <ExternalLink className="w-4 h-4 mr-2" />
+                    <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                     Details
                   </Button>
                 </div>
@@ -483,8 +496,8 @@ const ProjectsSection = () => {
           </div>
 
           {/* CTA */}
-          <div className="text-center mt-16">
-            <p className="text-muted-foreground mb-6">
+          <div className="text-center mt-12 sm:mt-16 px-4 sm:px-0">
+            <p className="text-sm sm:text-base text-muted-foreground mb-6">
               Interested in seeing more of my work or discussing a collaboration?
             </p>
           </div>

@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 const HeroSection = () => {
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [showExploreButton, setShowExploreButton] = useState(true);
   const fullText = 'Aymane Nouhail';
   
   const scrollToNext = () => {
@@ -23,6 +24,26 @@ const HeroSection = () => {
       return () => clearTimeout(timeout);
     }
   }, [currentIndex, fullText]);
+
+  // Scroll detection to hide explore button
+  useEffect(() => {
+    const handleScroll = () => {
+      const heroSection = document.getElementById('home');
+      if (heroSection) {
+        const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+        const scrollPosition = window.scrollY + window.innerHeight;
+        
+        // Hide button when user scrolls past 70% of the hero section
+        const threshold = heroSection.offsetTop + (heroSection.offsetHeight * 0.7);
+        setShowExploreButton(window.scrollY < threshold);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check initial position
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const techStack = [
     { name: 'Python', icon: Code2 },
@@ -202,7 +223,9 @@ const HeroSection = () => {
         {/* Enhanced Scroll Indicator */}
         <button 
           onClick={scrollToNext}
-          className="group fixed bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 z-30 flex flex-col items-center gap-1 sm:gap-2 text-muted-foreground hover:text-primary transition-all duration-300"
+          className={`group fixed bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 z-30 flex flex-col items-center gap-1 sm:gap-2 text-muted-foreground hover:text-primary transition-all duration-500 ${
+            showExploreButton ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
+          }`}
           aria-label="Scroll to next section"
         >
           <span className="text-xs sm:text-sm font-medium opacity-70 group-hover:opacity-100 animate-gentle-pulse">Explore</span>
