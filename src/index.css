@@ -356,6 +356,14 @@
     animation: float-gentle 4s ease-in-out infinite;
   }
 
+  .animate-subtle-bounce {
+    animation: subtle-bounce 3s ease-in-out infinite;
+  }
+
+  .animate-gentle-pulse {
+    animation: gentle-pulse 2s ease-in-out infinite;
+  }
+
   /* Mobile-specific adjustments */
   @media (max-width: 640px) {
     .glow-text-enhanced {
@@ -436,5 +444,25 @@
   }
   50% {
     transform: translateY(-5px);
+  }
+}
+
+@keyframes subtle-bounce {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes gentle-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
   }
 }

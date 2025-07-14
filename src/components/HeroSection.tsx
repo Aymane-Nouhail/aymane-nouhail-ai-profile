@@ -205,8 +205,8 @@ const HeroSection = () => {
           className="group fixed bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 z-30 flex flex-col items-center gap-1 sm:gap-2 text-muted-foreground hover:text-primary transition-all duration-300"
           aria-label="Scroll to next section"
         >
-          <span className="text-xs sm:text-sm font-medium opacity-70 group-hover:opacity-100">Explore</span>
-          <div className="p-2 rounded-full border border-border group-hover:border-primary/50 group-hover:bg-primary/10 transition-all duration-300 animate-bounce">
+          <span className="text-xs sm:text-sm font-medium opacity-70 group-hover:opacity-100 animate-gentle-pulse">Explore</span>
+          <div className="p-2 rounded-full border border-border group-hover:border-primary/50 group-hover:bg-primary/10 transition-all duration-300 animate-subtle-bounce">
             <ArrowDown className="w-4 h-4 sm:w-5 sm:h-5" />
           </div>
         </button>

@@ -377,17 +377,17 @@ const ProjectsSection = () => {
                 <div className="space-y-6 flex-1">
                   {/* Project Header */}
                   <div>
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="flex items-center gap-2">
-                        <h4 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
+                      <div className="flex items-center gap-2 flex-1 min-w-0">
+                        <h4 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors truncate">
                           {project.title}
                         </h4>
                         {project.featured && showAllProjects && (
-                          <span className="text-primary text-sm">⭐</span>
+                          <span className="text-primary text-sm flex-shrink-0">⭐</span>
                         )}
                       </div>
                       {project.company && (
-                        <Badge variant="secondary" className="bg-accent/10 text-accent border-accent/30 text-xs">
+                        <Badge variant="secondary" className="bg-accent/10 text-accent border-accent/30 text-xs flex-shrink-0 self-start">
                           {project.company}
                         </Badge>
                       )}
