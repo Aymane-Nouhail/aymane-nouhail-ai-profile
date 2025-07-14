@@ -3,7 +3,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Mail, Phone, MapPin, Github, Linkedin, Send, MessageSquare } from 'lucide-react';
+import { Mail, MapPin, Github, Linkedin, Send, MessageSquare, Briefcase } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { CONTACT_INFO, SOCIAL_LINKS } from '@/constants';
 
@@ -69,16 +69,22 @@ const ContactSection = () => {
       href: `mailto:${CONTACT_INFO.email}`
     },
     {
-      icon: Phone,
-      label: 'Phone',
-      value: '+33 7 51 32 09 93',
-      href: 'tel:+33751320993'
-    },
-    {
       icon: MapPin,
       label: 'Location',
       value: CONTACT_INFO.location,
       href: `https://maps.google.com/?q=${CONTACT_INFO.location.replace(' ', ',')}`
+    },
+    {
+      icon: Briefcase,
+      label: 'Status',
+      value: 'Available for consulting & collaborations',
+      href: '#'
+    },
+    {
+      icon: MessageSquare,
+      label: 'Response Time',
+      value: 'Within 24-48 hours',
+      href: '#'
     }
   ];
 
@@ -128,23 +134,34 @@ const ContactSection = () => {
                   Contact Information
                 </h3>
                 <div className="space-y-6">
-                  {contactInfo.map((info, index) => (
-                    <a
-                      key={index}
-                      href={info.href}
-                      target={info.href.startsWith('http') ? '_blank' : undefined}
-                      rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                      className="flex items-center gap-4 text-muted-foreground hover:text-primary transition-colors group"
-                    >
-                      <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                        <info.icon className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <p className="font-medium text-foreground">{info.label}</p>
-                        <p className="text-sm">{info.value}</p>
-                      </div>
-                    </a>
-                  ))}
+                  {contactInfo.map((info, index) => {
+                    const isClickable = info.href && info.href !== '#';
+                    const Component = isClickable ? 'a' : 'div';
+                    
+                    return (
+                      <Component
+                        key={index}
+                        {...(isClickable ? {
+                          href: info.href,
+                          target: info.href.startsWith('http') ? '_blank' : undefined,
+                          rel: info.href.startsWith('http') ? 'noopener noreferrer' : undefined,
+                        } : {})}
+                        className={`flex items-center gap-4 text-muted-foreground ${
+                          isClickable ? 'hover:text-primary transition-colors group cursor-pointer' : ''
+                        }`}
+                      >
+                        <div className={`p-3 rounded-full bg-primary/10 ${
+                          isClickable ? 'group-hover:bg-primary/20 transition-colors' : ''
+                        }`}>
+                          <info.icon className="w-5 h-5" />
+                        </div>
+                        <div>
+                          <p className="font-medium text-foreground">{info.label}</p>
+                          <p className="text-sm">{info.value}</p>
+                        </div>
+                      </Component>
+                    );
+                  })}
                 </div>
               </Card>
 
@@ -172,7 +189,7 @@ const ContactSection = () => {
             </div>
 
             {/* Contact Form */}
-            <div>
+            <div className="space-y-8">
               <Card className="card-glow p-8 h-fit">
                 <h3 className="text-xl font-semibold mb-6">Send a Message</h3>
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -236,7 +253,7 @@ const ContactSection = () => {
                       value={formData.message}
                       onChange={handleInputChange}
                       placeholder="Tell me about your project, questions, or how we can collaborate..."
-                      rows={6}
+                      rows={10}
                       className="bg-muted/50 border-border focus:border-primary/50 resize-none"
                     />
                   </div>
@@ -265,24 +282,6 @@ const ContactSection = () => {
                   </div>
                 </form>
               </Card>
-
-              {/* Additional Info */}
-              <div className="mt-8 text-center">
-                <p className="text-muted-foreground mb-4">
-                  Prefer a different way to connect? I'm active on multiple platforms:
-                </p>
-                <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
-                  <span className="flex items-center gap-2">
-                    📧 Email for detailed discussions
-                  </span>
-                  <span className="flex items-center gap-2">
-                    💼 LinkedIn for professional networking
-                  </span>
-                  <span className="flex items-center gap-2">
-                    💻 GitHub for code collaboration
-                  </span>
-                </div>
-              </div>
             </div>
           </div>
         </div>

@@ -75,7 +75,6 @@ const Footer = () => {
               <div className="space-y-2 text-sm text-muted-foreground">
                 <p>📍 Paris, France</p>
                 <p>📧 Aymane.Nouhail@gmail.com</p>
-                <p>📱 +33 7 51 32 09 93</p>
               </div>
               <Button 
                 variant="outline" 
