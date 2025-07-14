@@ -1,8 +1,10 @@
 import { Github, Linkedin, Mail, Heart, ArrowUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { CONTACT_INFO, SOCIAL_LINKS } from '@/constants';
+import { getCurrentYear, scrollToSection } from '@/utils/helpers';
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  const currentYear = getCurrentYear();
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -13,12 +15,6 @@ const Footer = () => {
     { label: 'Projects', href: '#projects' },
     { label: 'Blog', href: '#blog' },
     { label: 'Contact', href: '#contact' },
-  ];
-
-  const socialLinks = [
-    { icon: Github, href: 'https://github.com/aymane-nouhail', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://linkedin.com/in/aymane-nouhail', label: 'LinkedIn' },
-    { icon: Mail, href: 'mailto:Aymane.Nouhail@gmail.com', label: 'Email' },
   ];
 
   return (
@@ -37,7 +33,7 @@ const Footer = () => {
                 </p>
               </div>
               <div className="flex items-center gap-4">
-                {socialLinks.map((social) => (
+                {SOCIAL_LINKS.map((social) => (
                   <a
                     key={social.label}
                     href={social.href}
@@ -74,14 +70,14 @@ const Footer = () => {
               <h4 className="font-semibold text-foreground mb-4">Get in Touch</h4>
               <div className="space-y-2 text-sm text-muted-foreground">
                 <p>📍 Paris, France</p>
-                <p>📧 Aymane.Nouhail@gmail.com</p>
+                <p>📧 {CONTACT_INFO.email}</p>
                 <p>📱 +33 7 51 32 09 93</p>
               </div>
               <Button 
                 variant="outline" 
                 size="sm" 
                 className="mt-4 bg-primary/5 border-primary/30 hover:bg-primary/10"
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => scrollToSection('contact')}
               >
                 Contact Me
               </Button>
@@ -91,7 +87,7 @@ const Footer = () => {
           {/* Bottom Section */}
           <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-border">
             <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4 md:mb-0">
-              <span>© {currentYear} Aymane Nouhail. Built with</span>
+              <span>© {currentYear} {CONTACT_INFO.name}. Built with</span>
               <Heart className="w-4 h-4 text-red-500" />
               <span>using React & Tailwind CSS</span>
             </div>

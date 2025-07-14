@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Mail, Phone, MapPin, Github, Linkedin, Send, MessageSquare } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { CONTACT_INFO, SOCIAL_LINKS } from '@/constants';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -43,8 +44,8 @@ const ContactSection = () => {
     {
       icon: Mail,
       label: 'Email',
-      value: 'Aymane.Nouhail@gmail.com',
-      href: 'mailto:Aymane.Nouhail@gmail.com'
+      value: CONTACT_INFO.email,
+      href: `mailto:${CONTACT_INFO.email}`
     },
     {
       icon: Phone,
@@ -55,28 +56,28 @@ const ContactSection = () => {
     {
       icon: MapPin,
       label: 'Location',
-      value: 'Paris, France',
-      href: 'https://maps.google.com/?q=Paris,France'
+      value: CONTACT_INFO.location,
+      href: `https://maps.google.com/?q=${CONTACT_INFO.location.replace(' ', ',')}`
     }
   ];
 
-  const socialLinks = [
+  const socialLinksWithColors = [
     {
       icon: Github,
       label: 'GitHub',
-      href: 'https://github.com/aymane-nouhail',
+      href: CONTACT_INFO.github,
       color: 'hover:text-foreground'
     },
     {
       icon: Linkedin,
       label: 'LinkedIn',
-      href: 'https://linkedin.com/in/aymane-nouhail',
+      href: CONTACT_INFO.linkedin,
       color: 'hover:text-blue-400'
     },
     {
       icon: Mail,
       label: 'Email',
-      href: 'mailto:Aymane.Nouhail@gmail.com',
+      href: `mailto:${CONTACT_INFO.email}`,
       color: 'hover:text-primary'
     }
   ];
@@ -130,7 +131,7 @@ const ContactSection = () => {
               <Card className="card-glow p-8">
                 <h3 className="text-xl font-semibold mb-6">Connect Online</h3>
                 <div className="flex gap-4">
-                  {socialLinks.map((social, index) => (
+                  {socialLinksWithColors.map((social, index) => (
                     <a
                       key={index}
                       href={social.href}
@@ -158,7 +159,7 @@ const ContactSection = () => {
                   <Button 
                     variant="outline" 
                     className="w-full justify-start bg-primary/5 border-primary/30 hover:bg-primary/10"
-                    onClick={() => window.open('mailto:Aymane.Nouhail@gmail.com')}
+                    onClick={() => window.open(`mailto:${CONTACT_INFO.email}`)}
                   >
                     <Mail className="w-4 h-4 mr-3" />
                     Send Email

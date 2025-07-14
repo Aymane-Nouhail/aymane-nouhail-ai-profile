@@ -1,28 +1,31 @@
 import { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Download } from 'lucide-react';
+import { NAV_ITEMS } from '@/constants';
+import { scrollToSection } from '@/utils/helpers';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  const navItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'blog', label: 'Blog' },
-    { id: 'contact', label: 'Contact' },
-  ];
+  // Check if we're on a blog post page
+  const isBlogPostPage = location.pathname.startsWith('/blog/');
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = navItems.map(item => document.getElementById(item.id));
+      // Only handle scroll-based active section on the homepage
+      if (isBlogPostPage) return;
+      
+      const sections = NAV_ITEMS.map(item => document.getElementById(item.id));
       const scrollPosition = window.scrollY + 100;
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = sections[i];
         if (section && section.offsetTop <= scrollPosition) {
-          setActiveSection(navItems[i].id);
+          setActiveSection(NAV_ITEMS[i].id);
           break;
         }
       }
@@ -30,12 +33,15 @@ const Navigation = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isBlogPostPage]);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+  const handleScrollToSection = (sectionId: string) => {
+    if (isBlogPostPage) {
+      // If we're on a blog post page, navigate to homepage with hash
+      navigate(`/#${sectionId}`);
+    } else {
+      // If we're on homepage, scroll to section
+      scrollToSection(sectionId);
     }
     setIsOpen(false);
   };
@@ -47,7 +53,13 @@ const Navigation = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <button
-              onClick={() => scrollToSection('home')}
+              onClick={() => {
+                if (isBlogPostPage) {
+                  navigate('/');
+                } else {
+                  handleScrollToSection('home');
+                }
+              }}
               className="text-xl font-bold glow-text hover:scale-105 transition-transform"
             >
               AN
@@ -57,10 +69,10 @@ const Navigation = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
-              {navItems.map((item) => (
+              {NAV_ITEMS.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => scrollToSection(item.id)}
+                  onClick={() => handleScrollToSection(item.id)}
                   className={`nav-link ${activeSection === item.id ? 'active' : ''}`}
                 >
                   {item.label}
@@ -97,10 +109,10 @@ const Navigation = () => {
         {isOpen && (
           <div className="md:hidden bg-card border border-border rounded-lg mt-2 p-4 animate-slide-up">
             <div className="flex flex-col space-y-4">
-              {navItems.map((item) => (
+              {NAV_ITEMS.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => scrollToSection(item.id)}
+                  onClick={() => handleScrollToSection(item.id)}
                   className={`nav-link text-left ${activeSection === item.id ? 'active' : ''}`}
                 >
                   {item.label}

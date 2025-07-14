@@ -1,18 +1,18 @@
 import { Button } from '@/components/ui/button';
 import { ArrowDown, Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
+import { CONTACT_INFO } from '@/constants';
+import { scrollToSection } from '@/utils/helpers';
 
 const HeroSection = () => {
   const scrollToNext = () => {
-    const aboutSection = document.getElementById('about');
-    if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: 'smooth' });
-    }
+    scrollToSection('about');
   };
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 -z-10">
+        {/* Floating Orbs */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float"></div>
         <div className="absolute top-3/4 right-1/4 w-80 h-80 bg-accent/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
       </div>
@@ -44,10 +44,10 @@ const HeroSection = () => {
           {/* Location & Contact */}
           <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground mb-12 animate-slide-up" style={{ animationDelay: '0.8s' }}>
             <span className="flex items-center gap-2">
-              📍 Paris, France
+              📍 {CONTACT_INFO.location}
             </span>
             <span className="flex items-center gap-2">
-              📧 Aymane.Nouhail@gmail.com
+              📧 {CONTACT_INFO.email}
             </span>
           </div>
 
@@ -74,7 +74,7 @@ const HeroSection = () => {
           {/* Social Links */}
           <div className="flex items-center justify-center gap-6 animate-scale-in" style={{ animationDelay: '1.2s' }}>
             <a 
-              href="https://github.com/aymane-nouhail" 
+              href={CONTACT_INFO.github} 
               target="_blank" 
               rel="noopener noreferrer"
               className="p-3 rounded-full bg-card/50 border border-border hover:bg-primary/10 hover:border-primary/30 transition-all duration-300 hover:scale-110"
@@ -82,7 +82,7 @@ const HeroSection = () => {
               <Github className="w-6 h-6" />
             </a>
             <a 
-              href="https://linkedin.com/in/aymane-nouhail" 
+              href={CONTACT_INFO.linkedin} 
               target="_blank" 
               rel="noopener noreferrer"
               className="p-3 rounded-full bg-card/50 border border-border hover:bg-primary/10 hover:border-primary/30 transition-all duration-300 hover:scale-110"
@@ -90,7 +90,7 @@ const HeroSection = () => {
               <Linkedin className="w-6 h-6" />
             </a>
             <a 
-              href="mailto:Aymane.Nouhail@gmail.com"
+              href={`mailto:${CONTACT_INFO.email}`}
               className="p-3 rounded-full bg-card/50 border border-border hover:bg-primary/10 hover:border-primary/30 transition-all duration-300 hover:scale-110"
             >
               <Mail className="w-6 h-6" />

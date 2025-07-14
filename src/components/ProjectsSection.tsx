@@ -3,21 +3,8 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ExternalLink, Github, Play, Award } from 'lucide-react';
-
-interface Project {
-  id: string;
-  title: string;
-  description: string;
-  longDescription: string;
-  techStack: string[];
-  categories: string[];
-  demoUrl?: string;
-  githubUrl?: string;
-  image?: string;
-  achievements?: string[];
-  company?: string;
-  period?: string;
-}
+import { Project } from '@/types';
+import { CONTACT_INFO } from '@/constants';
 
 const ProjectsSection = () => {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -27,22 +14,33 @@ const ProjectsSection = () => {
       id: 'carrefour-rag',
       title: 'RAG-based Radio Ad Generator',
       description: 'AI-powered platform for generating radio advertisement scripts from product briefs',
-      longDescription: 'Built a comprehensive platform for Carrefour that parsed 500+ PowerPoint slides into structured data, separating main scripts and diffusion dates. Implemented RAG architecture with script embedding and retrieval search to feed relevant previous ads to the LLM for inspiration. Features hard-coded logic for determining appropriate date variations based on diffusion and availability dates. Transitioned from notebooks to production on Streamline platform.',
+      longDescription: 'Built a comprehensive platform for a major retail client that parsed 500+ PowerPoint slides into structured data, separating main scripts and diffusion dates. Implemented RAG architecture with script embedding and retrieval search to feed relevant previous ads to the LLM for inspiration. Features hard-coded logic for determining appropriate date variations based on diffusion and availability dates. Transitioned from notebooks to production on cloud platform.',
       techStack: ['Python', 'LangChain', 'Pandas', 'RAG', 'Prompt Engineering', 'Streamlit'],
       categories: ['RAG', 'NLP', 'Production'],
-      achievements: ['500+ PowerPoint slides processed', 'Production deployment on Streamline', 'Advanced prompt engineering'],
-      company: 'Publicis Re:Sources',
+      achievements: ['500+ PowerPoint slides processed', 'Production deployment on cloud platform', 'Advanced prompt engineering'],
+      company: 'Enterprise Client',
       period: 'Oct 2024 – present'
     },
     {
-      id: 'filegpt-multimodal',
-      title: 'FileGPT Multimodal Enhancement',
-      description: 'Extended FileGPT with comprehensive multimedia processing and dynamic configuration',
-      longDescription: 'Led multiple critical improvements to FileGPT including multimodal support (image, video, audio), bug fixes for web source display, chunk deduplication optimization, and page numbering corrections. Implemented mocking functionality for AgentExecutor and LangGraph migration, reducing test costs and improving speed. Currently migrating configuration from static files to dynamic database-driven system with real-time updates.',
-      techStack: ['LangChain', 'LangGraph', 'Streamlit', 'Multimodal AI', 'Testing', 'Database Migration'],
-      categories: ['Multimodal', 'RAG', 'Full-Stack', 'Testing'],
-      achievements: ['Multimodal AI integration', 'Test optimization & mocking', 'Dynamic configuration system', 'Bug resolution'],
-      company: 'Publicis Re:Sources',
+      id: 'multimodal-ai-enhancement',
+      title: 'Multimodal AI Enhancement',
+      description: 'Extended agentic conversational AI with comprehensive multimedia processing capabilities',
+      longDescription: 'Led the implementation of multimodal support for an enterprise conversational AI system, enabling processing of images, videos, and audio files alongside text. Developed unified multimodal pipelines that seamlessly integrate visual and audio understanding with existing RAG architecture. Implemented advanced preprocessing for different media types and optimized inference workflows for production deployment.',
+      techStack: ['Multimodal AI', 'Computer Vision', 'Audio Processing', 'LangChain', 'Pipeline Optimization'],
+      categories: ['Multimodal', 'AI Enhancement', 'Production'],
+      achievements: ['Image, video & audio processing', 'Unified multimodal pipeline', 'Production optimization', 'Media type integration'],
+      company: 'Enterprise Client',
+      period: 'Oct 2024 – present'
+    },
+    {
+      id: 'conversational-ai-maintenance',
+      title: 'Conversational AI System Maintenance',
+      description: 'Comprehensive maintenance and optimization of enterprise-grade agentic conversational AI',
+      longDescription: 'Responsible for maintaining and enhancing a production conversational AI system, focusing on bug fixes, performance optimization, and system reliability. Implemented chunk deduplication optimization, resolved web source display issues, and corrected page numbering inconsistencies. Developed comprehensive testing framework with mocking functionality for AgentExecutor, reducing test costs and improving development speed.',
+      techStack: ['LangChain', 'LangGraph', 'Testing Frameworks', 'Performance Optimization', 'Debugging'],
+      categories: ['Maintenance', 'Testing', 'Performance', 'Production'],
+      achievements: ['Bug resolution & system stability', 'Test framework development', 'Performance optimization', 'Cost reduction through mocking'],
+      company: 'Enterprise Client',
       period: 'Oct 2024 – present'
     },
     {
@@ -53,18 +51,18 @@ const ProjectsSection = () => {
       techStack: ['FastAPI', 'LangChain', 'Docker', 'Azure Container Registry', 'Async Programming'],
       categories: ['Production', 'Microservices', 'DevOps'],
       achievements: ['Azure production deployment', 'Containerized architecture', 'API documentation'],
-      company: 'Publicis Re:Sources',
+      company: 'Enterprise Client',
       period: 'Oct 2024 – present'
     },
     {
       id: 'smart-home-assistant',
       title: 'Smart Home Voice Assistant',
       description: 'Raspberry Pi-based RAG voice assistant for natural language device control',
-      longDescription: 'Developed a comprehensive voice assistant POC for Green Energy Park featuring natural language device automation and hands-free activation using trigger words. Built with RAG architecture for knowledge-base Q&A and smart device integration, supporting lights, appliances, and multimedia control through conversational interface.',
+      longDescription: 'Developed a comprehensive voice assistant POC for a green technology company featuring natural language device automation and hands-free activation using trigger words. Built with RAG architecture for knowledge-base Q&A and smart device integration, supporting lights, appliances, and multimedia control through conversational interface.',
       techStack: ['Python', 'Raspberry Pi', 'RAG', 'Voice Recognition', 'IoT Integration', 'Natural Language Processing'],
       categories: ['IoT', 'Voice AI', 'RAG'],
       achievements: ['Voice activation system', 'Smart home integration', 'Natural language control', 'Edge deployment'],
-      company: 'Green Energy Park',
+      company: 'Technology Partner',
       period: 'Apr 2024 – July 2024'
     },
     {
@@ -76,23 +74,24 @@ const ProjectsSection = () => {
       categories: ['Healthcare', 'NLP', 'Full-Stack'],
       achievements: ['Sentiment-aware responses', 'Longitudinal mood tracking', 'CBT integration', 'Azure deployment'],
       demoUrl: 'https://demo.example.com',
-      githubUrl: 'https://github.com/aymane-nouhail',
+      githubUrl: CONTACT_INFO.github,
+      company: 'Personal Project',
       period: 'Personal Project'
     },
     {
       id: 'salesforce-optimization',
-      title: 'Salesforce Opportunity Deduplication',
+      title: 'CRM Opportunity Deduplication',
       description: 'AI-powered solution to prevent duplicate opportunities through advanced prompt engineering',
-      longDescription: 'Developed prompt engineering solution to avoid opportunity duplication in Salesforce. Created Python POC demonstrating JSON preprocessing methodology to simplify LLM classification tasks. Proposed innovative approach to preprocess data before LLM analysis, improving accuracy and reducing computational overhead.',
-      techStack: ['Python', 'Prompt Engineering', 'JSON Processing', 'Salesforce', 'LLM Classification'],
+      longDescription: 'Developed prompt engineering solution to avoid opportunity duplication in CRM systems. Created Python POC demonstrating JSON preprocessing methodology to simplify LLM classification tasks. Proposed innovative approach to preprocess data before LLM analysis, improving accuracy and reducing computational overhead.',
+      techStack: ['Python', 'Prompt Engineering', 'JSON Processing', 'CRM Integration', 'LLM Classification'],
       categories: ['NLP', 'Optimization', 'CRM'],
       achievements: ['Prompt engineering innovation', 'Python POC development', 'Classification optimization'],
-      company: 'Publicis Re:Sources',
+      company: 'Enterprise Client',
       period: 'Oct 2024 – present'
     }
   ];
 
-  const categories = ['All', 'RAG', 'NLP', 'Production', 'Multimodal', 'IoT', 'Voice AI', 'Healthcare', 'Full-Stack', 'DevOps', 'Microservices', 'Testing', 'Optimization', 'CRM'];
+  const categories = ['All', 'RAG', 'NLP', 'Production', 'Multimodal', 'AI Enhancement', 'Maintenance', 'Performance', 'IoT', 'Voice AI', 'Healthcare', 'Full-Stack', 'DevOps', 'Microservices', 'Testing', 'Optimization', 'CRM'];
 
   const filteredProjects = useMemo(() => {
     if (activeFilter === 'All') return projects;
@@ -193,18 +192,38 @@ const ProjectsSection = () => {
                 {/* Actions */}
                 <div className="flex gap-3 pt-6 mt-6 border-t border-border">
                   {project.demoUrl && (
-                    <Button variant="default" size="sm" className="flex-1">
+                    <Button 
+                      variant="default" 
+                      size="sm" 
+                      className="flex-1"
+                      onClick={() => window.open(project.demoUrl, '_blank')}
+                    >
                       <Play className="w-4 h-4 mr-2" />
                       Live Demo
                     </Button>
                   )}
                   {project.githubUrl && (
-                    <Button variant="outline" size="sm" className="flex-1">
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="flex-1"
+                      onClick={() => window.open(project.githubUrl, '_blank')}
+                    >
                       <Github className="w-4 h-4 mr-2" />
                       Code
                     </Button>
                   )}
-                  <Button variant="ghost" size="sm">
+                  <Button 
+                    variant="ghost" 
+                    size="sm"
+                    onClick={() => {
+                      // For now, scroll to contact section to discuss the project
+                      const contactSection = document.getElementById('contact');
+                      if (contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
+                  >
                     <ExternalLink className="w-4 h-4 mr-2" />
                     Details
                   </Button>

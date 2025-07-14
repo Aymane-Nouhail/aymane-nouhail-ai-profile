@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
@@ -6,50 +7,20 @@ import ProjectsSection from '@/components/ProjectsSection';
 import BlogSection from '@/components/BlogSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import { SEO_DATA } from '@/constants';
 
 const Index = () => {
+  const location = useLocation();
+
   useEffect(() => {
     // Update document title and meta
-    document.title = 'Aymane Nouhail - Generative AI Data Scientist';
+    document.title = SEO_DATA.title;
     
     // Update meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 
-        'AI-oriented Data Scientist specializing in RAG systems and agentic applications. Building intelligent AI solutions with modern engineering practices in Paris, France.'
-      );
+      metaDescription.setAttribute('content', SEO_DATA.description);
     }
-
-    // Add structured data for SEO
-    const structuredData = {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Aymane Nouhail",
-      "jobTitle": "Generative AI Data Scientist",
-      "description": "AI-oriented Data Scientist focused on building and maintaining Retrieval-Augmented Generation (RAG) and agentic applications",
-      "url": window.location.origin,
-      "email": "Aymane.Nouhail@gmail.com",
-      "telephone": "+33751320993",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Paris",
-        "addressCountry": "France"
-      },
-      "sameAs": [
-        "https://github.com/aymane-nouhail",
-        "https://linkedin.com/in/aymane-nouhail"
-      ],
-      "knowsAbout": [
-        "Artificial Intelligence",
-        "Machine Learning",
-        "RAG Systems",
-        "Python",
-        "LangChain",
-        "Azure",
-        "Docker",
-        "FastAPI"
-      ]
-    };
 
     // Add or update structured data script
     let structuredDataScript = document.getElementById('structured-data') as HTMLScriptElement;
@@ -59,8 +30,22 @@ const Index = () => {
       structuredDataScript.type = 'application/ld+json';
       document.head.appendChild(structuredDataScript);
     }
-    structuredDataScript.textContent = JSON.stringify(structuredData);
+    structuredDataScript.textContent = JSON.stringify(SEO_DATA.structuredData);
   }, []);
+
+  // Handle hash navigation when coming from other pages
+  useEffect(() => {
+    if (location.hash) {
+      const sectionId = location.hash.substring(1); // Remove the '#'
+      const element = document.getElementById(sectionId);
+      if (element) {
+        // Add a small delay to ensure the page has loaded
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [location.hash]);
 
   return (
     <div className="min-h-screen bg-background">

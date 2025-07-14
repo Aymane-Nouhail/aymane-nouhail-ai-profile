@@ -133,7 +133,6 @@
   .hero-gradient {
     background: var(--gradient-primary);
     background-size: 200% 200%;
-    animation: gradient-shift 3s ease infinite;
   }
 
   .card-glow {
