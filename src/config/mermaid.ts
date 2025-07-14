@@ -68,6 +68,6 @@ export const MERMAID_CONFIG = {
     fillType6: '#71717a',
     fillType7: '#737373',
   },
-  securityLevel: 'loose',
+  securityLevel: 'loose' as const,
   fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
 };

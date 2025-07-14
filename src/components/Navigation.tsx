@@ -46,6 +46,15 @@ const Navigation = () => {
     setIsOpen(false);
   };
 
+  const handleResumeDownload = () => {
+    const link = document.createElement('a');
+    link.href = '/Aymane_Nouhail_Resume.pdf';
+    link.download = 'Aymane_Nouhail_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
       <div className="container mx-auto px-4">
@@ -86,6 +95,7 @@ const Navigation = () => {
             <Button 
               variant="outline" 
               size="sm"
+              onClick={handleResumeDownload}
               className="bg-primary/10 border-primary/30 hover:bg-primary/20"
             >
               <Download className="w-4 h-4 mr-2" />
@@ -121,6 +131,7 @@ const Navigation = () => {
               <Button 
                 variant="outline" 
                 size="sm"
+                onClick={handleResumeDownload}
                 className="bg-primary/10 border-primary/30 hover:bg-primary/20 w-full"
               >
                 <Download className="w-4 h-4 mr-2" />

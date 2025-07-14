@@ -29,15 +29,36 @@ const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // Create mailto link with form data
+      const subject = encodeURIComponent(formData.subject);
+      const body = encodeURIComponent(
+        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+      );
+      const mailtoLink = `mailto:${CONTACT_INFO.email}?subject=${subject}&body=${body}`;
+      
+      // Open email client
+      window.location.href = mailtoLink;
+      
       toast({
-        title: "Message sent successfully!",
-        description: "Thank you for reaching out. I'll get back to you soon.",
+        title: "Email client opened!",
+        description: "Your message has been prepared in your email client. Please send it from there.",
       });
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      
+      // Reset form after a short delay
+      setTimeout(() => {
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      }, 500);
+      
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "There was an issue preparing your email. Please try sending directly to the email address.",
+        variant: "destructive"
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   const contactInfo = [
@@ -97,11 +118,11 @@ const ContactSection = () => {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-12">
+          <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Information */}
-            <div className="lg:col-span-1 space-y-8">
+            <div className="space-y-8">
               {/* Contact Details */}
-              <Card className="card-glow p-8">
+              <Card className="card-glow p-8 h-fit">
                 <h3 className="text-xl font-semibold mb-6 flex items-center gap-3">
                   <MessageSquare className="w-5 h-5 text-primary" />
                   Contact Information
@@ -128,7 +149,7 @@ const ContactSection = () => {
               </Card>
 
               {/* Social Links */}
-              <Card className="card-glow p-8">
+              <Card className="card-glow p-8 h-fit">
                 <h3 className="text-xl font-semibold mb-6">Connect Online</h3>
                 <div className="flex gap-4">
                   {socialLinksWithColors.map((social, index) => (
@@ -148,37 +169,11 @@ const ContactSection = () => {
                   Follow my journey in AI and connect with me on professional networks.
                 </p>
               </Card>
-
-              {/* Quick Contact */}
-              <Card className="card-glow p-8">
-                <h3 className="text-xl font-semibold mb-4">Quick Response</h3>
-                <p className="text-muted-foreground text-sm mb-4">
-                  For urgent inquiries or quick questions, feel free to reach out directly:
-                </p>
-                <div className="space-y-3">
-                  <Button 
-                    variant="outline" 
-                    className="w-full justify-start bg-primary/5 border-primary/30 hover:bg-primary/10"
-                    onClick={() => window.open(`mailto:${CONTACT_INFO.email}`)}
-                  >
-                    <Mail className="w-4 h-4 mr-3" />
-                    Send Email
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    className="w-full justify-start bg-accent/5 border-accent/30 hover:bg-accent/10"
-                    onClick={() => window.open('https://linkedin.com/in/aymane-nouhail')}
-                  >
-                    <Linkedin className="w-4 h-4 mr-3" />
-                    LinkedIn Message
-                  </Button>
-                </div>
-              </Card>
             </div>
 
             {/* Contact Form */}
-            <div className="lg:col-span-2">
-              <Card className="card-glow p-8">
+            <div>
+              <Card className="card-glow p-8 h-fit">
                 <h3 className="text-xl font-semibold mb-6">Send a Message</h3>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid sm:grid-cols-2 gap-6">

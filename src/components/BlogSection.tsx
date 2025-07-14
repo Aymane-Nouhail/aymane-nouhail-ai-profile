@@ -166,28 +166,7 @@ const BlogSection = () => {
             </div>
           </div>
 
-          {/* Blog CTA */}
-          <div className="text-center">
-            <Card className="card-glow p-8 max-w-2xl mx-auto">
-              <h3 className="text-xl font-semibold mb-4">Stay Updated</h3>
-              <p className="text-muted-foreground mb-6">
-                Get the latest insights on AI engineering, RAG systems, and production ML delivered to your inbox.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 px-4 py-2 bg-muted border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
-                />
-                <Button className="hero-gradient px-6">
-                  Subscribe
-                </Button>
-              </div>
-              <p className="text-xs text-muted-foreground mt-3">
-                No spam, unsubscribe anytime. Updates about new articles and AI insights.
-              </p>
-            </Card>
-          </div>
+
         </div>
       </div>
     </section>

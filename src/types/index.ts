@@ -22,6 +22,7 @@ export interface Project {
   achievements?: string[];
   company?: string;
   period?: string;
+  featured?: boolean;
 }
 
 export interface ContactInfo {
