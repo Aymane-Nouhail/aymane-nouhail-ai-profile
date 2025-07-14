@@ -14,8 +14,9 @@ interface Project {
   demoUrl?: string;
   githubUrl?: string;
   image?: string;
-  featured?: boolean;
   achievements?: string[];
+  company?: string;
+  period?: string;
 }
 
 const ProjectsSection = () => {
@@ -25,75 +26,78 @@ const ProjectsSection = () => {
     {
       id: 'carrefour-rag',
       title: 'RAG-based Radio Ad Generator',
-      description: 'AI-powered marketing solution for automated script generation',
-      longDescription: 'Built a sophisticated RAG-based system for Carrefour that ingested 500+ marketing campaigns into a database to automate radio advertisement script generation. This solution cut production time significantly and boosted output by 30%.',
-      techStack: ['Python', 'LangChain', 'FastAPI', 'Azure', 'Docker', 'PostgreSQL'],
+      description: 'AI-powered platform for generating radio advertisement scripts from product briefs',
+      longDescription: 'Built a comprehensive platform for Carrefour that parsed 500+ PowerPoint slides into structured data, separating main scripts and diffusion dates. Implemented RAG architecture with script embedding and retrieval search to feed relevant previous ads to the LLM for inspiration. Features hard-coded logic for determining appropriate date variations based on diffusion and availability dates. Transitioned from notebooks to production on Streamline platform.',
+      techStack: ['Python', 'LangChain', 'Pandas', 'RAG', 'Prompt Engineering', 'Streamlit'],
       categories: ['RAG', 'NLP', 'Production'],
-      achievements: ['30% increase in output', '500+ campaigns processed', 'Production deployment'],
-      featured: true
+      achievements: ['500+ PowerPoint slides processed', 'Production deployment on Streamline', 'Advanced prompt engineering'],
+      company: 'Publicis Re:Sources',
+      period: 'Oct 2024 – present'
     },
     {
       id: 'filegpt-multimodal',
       title: 'FileGPT Multimodal Enhancement',
-      description: 'Extended FileGPT with image, video, and audio processing capabilities',
-      longDescription: 'Added comprehensive multimodal support to FileGPT, enabling ingestion, embedding, and retrieval of multimedia content alongside text. Implemented advanced front-end configuration panels and migrated from static files to Prisma-managed database.',
-      techStack: ['LangChain', 'Prisma', 'TypeScript', 'Multimodal AI', 'Database Design'],
-      categories: ['Multimodal', 'RAG', 'Full-Stack'],
-      achievements: ['Multimodal AI integration', 'Database migration', 'User feedback iteration'],
-      featured: true
+      description: 'Extended FileGPT with comprehensive multimedia processing and dynamic configuration',
+      longDescription: 'Led multiple critical improvements to FileGPT including multimodal support (image, video, audio), bug fixes for web source display, chunk deduplication optimization, and page numbering corrections. Implemented mocking functionality for AgentExecutor and LangGraph migration, reducing test costs and improving speed. Currently migrating configuration from static files to dynamic database-driven system with real-time updates.',
+      techStack: ['LangChain', 'LangGraph', 'Streamlit', 'Multimodal AI', 'Testing', 'Database Migration'],
+      categories: ['Multimodal', 'RAG', 'Full-Stack', 'Testing'],
+      achievements: ['Multimodal AI integration', 'Test optimization & mocking', 'Dynamic configuration system', 'Bug resolution'],
+      company: 'Publicis Re:Sources',
+      period: 'Oct 2024 – present'
+    },
+    {
+      id: 'textstudio-api',
+      title: 'TextStudio Translation & Summarization API',
+      description: 'Containerized FastAPI service for document processing deployed on Azure',
+      longDescription: 'Developed and deployed a production-ready API for document translation and summarization using FastAPI and LangChain. The service is containerized with Docker and deployed to Azure Container Registry, providing scalable document processing capabilities. Features async LLM inference endpoints with comprehensive error handling and monitoring.',
+      techStack: ['FastAPI', 'LangChain', 'Docker', 'Azure Container Registry', 'Async Programming'],
+      categories: ['Production', 'Microservices', 'DevOps'],
+      achievements: ['Azure production deployment', 'Containerized architecture', 'API documentation'],
+      company: 'Publicis Re:Sources',
+      period: 'Oct 2024 – present'
     },
     {
       id: 'smart-home-assistant',
       title: 'Smart Home Voice Assistant',
-      description: 'Raspberry Pi-based RAG voice assistant for smart home control',
-      longDescription: 'Developed a comprehensive voice assistant POC for Green Energy Park featuring natural language device automation, hands-free activation, and multimedia control. Built with RAG architecture for knowledge-base Q&A and smart device integration.',
-      techStack: ['Python', 'Raspberry Pi', 'NLP', 'IoT', 'Voice Recognition', 'RAG'],
+      description: 'Raspberry Pi-based RAG voice assistant for natural language device control',
+      longDescription: 'Developed a comprehensive voice assistant POC for Green Energy Park featuring natural language device automation and hands-free activation using trigger words. Built with RAG architecture for knowledge-base Q&A and smart device integration, supporting lights, appliances, and multimedia control through conversational interface.',
+      techStack: ['Python', 'Raspberry Pi', 'RAG', 'Voice Recognition', 'IoT Integration', 'Natural Language Processing'],
       categories: ['IoT', 'Voice AI', 'RAG'],
-      achievements: ['Voice activation', 'Smart home integration', 'Natural language control'],
-      githubUrl: 'https://github.com/aymane-nouhail'
+      achievements: ['Voice activation system', 'Smart home integration', 'Natural language control', 'Edge deployment'],
+      company: 'Green Energy Park',
+      period: 'Apr 2024 – July 2024'
     },
     {
       id: 'moodai-therapy',
       title: 'MoodAI Therapy Assistant',
-      description: 'Dynamic journaling app with mood-aware chatbot personas',
-      longDescription: 'Created a proof-of-concept therapy assistant featuring mood-aware chatbot personas that adapt tone based on user sentiment. Developed RAG pipeline mapping journal sentiment to tailored CBT-based prompts for personalized guidance.',
-      techStack: ['React', 'FastAPI', 'Azure', 'Time-series DB', 'Sentiment Analysis', 'CBT'],
+      description: 'Dynamic journaling app with mood-aware chatbot personas and longitudinal tracking',
+      longDescription: 'Created a proof-of-concept therapy assistant featuring mood-aware chatbot personas that adapt tone based on user sentiment analysis. Developed RAG pipeline mapping journal sentiment to tailored CBT-based prompts for personalized guidance. Includes time-series database for longitudinal mood tracking with CSV export capabilities for user and therapist review.',
+      techStack: ['React', 'FastAPI', 'Azure', 'Time-series Database', 'Sentiment Analysis', 'CBT', 'RAG Pipeline'],
       categories: ['Healthcare', 'NLP', 'Full-Stack'],
-      achievements: ['Sentiment-aware responses', 'Longitudinal tracking', 'CBT integration'],
+      achievements: ['Sentiment-aware responses', 'Longitudinal mood tracking', 'CBT integration', 'Azure deployment'],
       demoUrl: 'https://demo.example.com',
       githubUrl: 'https://github.com/aymane-nouhail',
-      featured: true
+      period: 'Personal Project'
     },
     {
-      id: 'azure-microservice',
-      title: 'Containerized FastAPI Microservice',
-      description: 'Production-ready document processing service on Azure',
-      longDescription: 'Packaged and deployed a containerized FastAPI microservice to Azure App Service via ACR with comprehensive document summarization and translation endpoints. Implemented GitHub Actions CI/CD pipeline for automated deployment.',
-      techStack: ['FastAPI', 'Docker', 'Azure App Service', 'ACR', 'GitHub Actions', 'CI/CD'],
-      categories: ['DevOps', 'Microservices', 'Production'],
-      achievements: ['Azure deployment', 'CI/CD automation', 'Production monitoring'],
-      githubUrl: 'https://github.com/aymane-nouhail'
-    },
-    {
-      id: 'langchain-optimization',
-      title: 'LangChain Testing Optimization',
-      description: 'Performance optimization for AI workflow testing',
-      longDescription: 'Introduced mocking AgentExecutor in FileGPT unit tests to simulate LangChain workflows, dramatically reducing test runtime from seconds to fractions of a second while maintaining test coverage and reliability.',
-      techStack: ['Python', 'LangChain', 'Unit Testing', 'Mocking', 'Performance Optimization'],
-      categories: ['Testing', 'Performance', 'Development'],
-      achievements: ['99% test time reduction', 'Maintained coverage', 'Development velocity improvement'],
-      githubUrl: 'https://github.com/aymane-nouhail'
+      id: 'salesforce-optimization',
+      title: 'Salesforce Opportunity Deduplication',
+      description: 'AI-powered solution to prevent duplicate opportunities through advanced prompt engineering',
+      longDescription: 'Developed prompt engineering solution to avoid opportunity duplication in Salesforce. Created Python POC demonstrating JSON preprocessing methodology to simplify LLM classification tasks. Proposed innovative approach to preprocess data before LLM analysis, improving accuracy and reducing computational overhead.',
+      techStack: ['Python', 'Prompt Engineering', 'JSON Processing', 'Salesforce', 'LLM Classification'],
+      categories: ['NLP', 'Optimization', 'CRM'],
+      achievements: ['Prompt engineering innovation', 'Python POC development', 'Classification optimization'],
+      company: 'Publicis Re:Sources',
+      period: 'Oct 2024 – present'
     }
   ];
 
-  const categories = ['All', 'RAG', 'NLP', 'Full-Stack', 'Production', 'Multimodal', 'IoT', 'Voice AI', 'Healthcare', 'DevOps', 'Microservices', 'Testing', 'Performance', 'Development'];
+  const categories = ['All', 'RAG', 'NLP', 'Production', 'Multimodal', 'IoT', 'Voice AI', 'Healthcare', 'Full-Stack', 'DevOps', 'Microservices', 'Testing', 'Optimization', 'CRM'];
 
   const filteredProjects = useMemo(() => {
     if (activeFilter === 'All') return projects;
     return projects.filter(project => project.categories.includes(activeFilter));
   }, [activeFilter]);
-
-  const featuredProjects = projects.filter(project => project.featured);
 
   return (
     <section id="projects" className="py-20">
@@ -102,10 +106,10 @@ const ProjectsSection = () => {
           {/* Section Header */}
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Featured <span className="glow-text">Projects</span>
+              AI <span className="glow-text">Projects</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              A showcase of AI-driven solutions, RAG systems, and production deployments that demonstrate real-world impact
+              Production-ready AI solutions, RAG systems, and innovative applications that demonstrate real-world impact across industries
             </p>
           </div>
 
@@ -122,135 +126,88 @@ const ProjectsSection = () => {
             ))}
           </div>
 
-          {/* Featured Projects Grid */}
-          {activeFilter === 'All' && (
-            <div className="mb-16">
-              <h3 className="text-2xl font-semibold mb-8 text-center">⭐ Featured Work</h3>
-              <div className="grid md:grid-cols-2 gap-8">
-                {featuredProjects.map((project) => (
-                  <Card key={project.id} className="card-glow p-8 group">
-                    <div className="space-y-6">
-                      {/* Project Header */}
-                      <div>
-                        <div className="flex items-start justify-between mb-3">
-                          <h4 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
-                            {project.title}
-                          </h4>
-                          {project.featured && (
-                            <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/30">
-                              <Award className="w-3 h-3 mr-1" />
-                              Featured
-                            </Badge>
-                          )}
-                        </div>
-                        <p className="text-muted-foreground mb-4">{project.description}</p>
-                        <p className="text-sm text-muted-foreground leading-relaxed">{project.longDescription}</p>
-                      </div>
-
-                      {/* Achievements */}
-                      {project.achievements && (
-                        <div>
-                          <h5 className="font-medium text-foreground mb-2">Key Achievements:</h5>
-                          <ul className="space-y-1">
-                            {project.achievements.map((achievement, i) => (
-                              <li key={i} className="text-sm text-muted-foreground flex items-center gap-2">
-                                <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                                {achievement}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-
-                      {/* Tech Stack */}
-                      <div>
-                        <h5 className="font-medium text-foreground mb-3">Tech Stack:</h5>
-                        <div className="flex flex-wrap gap-2">
-                          {project.techStack.map((tech) => (
-                            <span key={tech} className="tech-stack-badge">
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Actions */}
-                      <div className="flex gap-3 pt-4">
-                        {project.demoUrl && (
-                          <Button variant="default" size="sm" className="flex-1">
-                            <Play className="w-4 h-4 mr-2" />
-                            Live Demo
-                          </Button>
-                        )}
-                        {project.githubUrl && (
-                          <Button variant="outline" size="sm" className="flex-1">
-                            <Github className="w-4 h-4 mr-2" />
-                            Code
-                          </Button>
-                        )}
-                        <Button variant="ghost" size="sm">
-                          <ExternalLink className="w-4 h-4 mr-2" />
-                          Details
-                        </Button>
-                      </div>
-                    </div>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* All Projects Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Projects Grid - All Same Size */}
+          <div className="grid md:grid-cols-2 gap-8">
             {filteredProjects.map((project) => (
-              <Card key={project.id} className="card-glow p-6 group h-full flex flex-col">
-                <div className="space-y-4 flex-1">
+              <Card key={project.id} className="card-glow p-8 group h-full flex flex-col">
+                <div className="space-y-6 flex-1">
                   {/* Project Header */}
                   <div>
-                    <h4 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors mb-2">
-                      {project.title}
-                    </h4>
-                    <p className="text-sm text-muted-foreground">{project.description}</p>
+                    <div className="flex items-start justify-between mb-3">
+                      <h4 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                        {project.title}
+                      </h4>
+                      {project.company && (
+                        <Badge variant="secondary" className="bg-accent/10 text-accent border-accent/30 text-xs">
+                          {project.company}
+                        </Badge>
+                      )}
+                    </div>
+                    <p className="text-muted-foreground mb-3">{project.description}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{project.longDescription}</p>
+                    {project.period && (
+                      <p className="text-xs text-muted-foreground mt-2">📅 {project.period}</p>
+                    )}
                   </div>
+
+                  {/* Achievements */}
+                  {project.achievements && (
+                    <div>
+                      <h5 className="font-medium text-foreground mb-2">Key Achievements:</h5>
+                      <ul className="space-y-1">
+                        {project.achievements.map((achievement, i) => (
+                          <li key={i} className="text-sm text-muted-foreground flex items-center gap-2">
+                            <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
+                            {achievement}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
 
                   {/* Categories */}
-                  <div className="flex flex-wrap gap-1">
-                    {project.categories.map((category) => (
-                      <Badge key={category} variant="outline" className="text-xs">
-                        {category}
-                      </Badge>
-                    ))}
+                  <div>
+                    <h5 className="font-medium text-foreground mb-2">Categories:</h5>
+                    <div className="flex flex-wrap gap-2">
+                      {project.categories.map((category) => (
+                        <Badge key={category} variant="outline" className="text-xs">
+                          {category}
+                        </Badge>
+                      ))}
+                    </div>
                   </div>
 
-                  {/* Tech Stack (limited) */}
-                  <div className="flex flex-wrap gap-1">
-                    {project.techStack.slice(0, 4).map((tech) => (
-                      <span key={tech} className="text-xs px-2 py-1 bg-muted/50 rounded">
-                        {tech}
-                      </span>
-                    ))}
-                    {project.techStack.length > 4 && (
-                      <span className="text-xs px-2 py-1 bg-muted/50 rounded">
-                        +{project.techStack.length - 4} more
-                      </span>
-                    )}
+                  {/* Tech Stack */}
+                  <div>
+                    <h5 className="font-medium text-foreground mb-2">Tech Stack:</h5>
+                    <div className="flex flex-wrap gap-2">
+                      {project.techStack.map((tech) => (
+                        <span key={tech} className="tech-stack-badge">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
                 {/* Actions */}
-                <div className="flex gap-2 mt-4 pt-4 border-t border-border">
+                <div className="flex gap-3 pt-6 mt-6 border-t border-border">
                   {project.demoUrl && (
-                    <Button variant="default" size="sm" className="flex-1 text-xs">
-                      <Play className="w-3 h-3 mr-1" />
-                      Demo
+                    <Button variant="default" size="sm" className="flex-1">
+                      <Play className="w-4 h-4 mr-2" />
+                      Live Demo
                     </Button>
                   )}
                   {project.githubUrl && (
-                    <Button variant="outline" size="sm" className="flex-1 text-xs">
-                      <Github className="w-3 h-3 mr-1" />
+                    <Button variant="outline" size="sm" className="flex-1">
+                      <Github className="w-4 h-4 mr-2" />
                       Code
                     </Button>
                   )}
+                  <Button variant="ghost" size="sm">
+                    <ExternalLink className="w-4 h-4 mr-2" />
+                    Details
+                  </Button>
                 </div>
               </Card>
             ))}
