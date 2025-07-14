@@ -176,6 +176,11 @@ No environment variables are required for basic functionality.
    - Verify GitHub Pages settings
    - Clear browser cache
 
+4. **GitHub Actions fails with deprecated action error**:
+   - This has been fixed in the current workflow
+   - Make sure you're using the latest `.github/workflows/deploy.yml`
+   - The workflow now uses current action versions (v4)
+
 4. **Resume download not working**:
    - Ensure `Aymane_Nouhail_Resume.pdf` exists in `/public` directory
    - Check file permissions
