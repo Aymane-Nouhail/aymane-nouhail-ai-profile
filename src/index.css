@@ -355,6 +355,30 @@
   .animate-float-gentle {
     animation: float-gentle 4s ease-in-out infinite;
   }
+
+  /* Mobile-specific adjustments */
+  @media (max-width: 640px) {
+    .glow-text-enhanced {
+      filter: drop-shadow(0 0 10px hsl(var(--primary) / 0.3));
+      text-shadow: 0 0 15px hsl(var(--primary) / 0.2);
+    }
+    
+    .hero-gradient {
+      background-size: 150% 150%;
+    }
+    
+    .bg-grid-pattern {
+      background-size: 30px 30px;
+    }
+    
+    .animate-float {
+      animation: float-gentle 8s ease-in-out infinite;
+    }
+    
+    .animate-gradient-shift {
+      animation: gradient-shift 12s ease infinite;
+    }
+  }
 }
 
 @keyframes gradient-shift {
